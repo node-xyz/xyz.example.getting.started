@@ -1,0 +1,19 @@
+{
+  "name": "xyz.example.getting.started",
+  "version": "1.0.0",
+  "description": "examples in the getting started section of xyz",
+  "main": "index.js",
+  "scripts": {
+    "test": "./node_modules/.bin/mocha --reporter spec"
+  },
+  "author": "kian.peymani@gmail.com",
+  "license": "ISC",
+  "dependencies": {
+    "xyz-cli": "^0.3.2",
+    "xyz-core": "^0.3.2"
+  },
+  "devDependencies": {
+    "mocha": "latest",
+    "chai": "latest"
+  }
+}

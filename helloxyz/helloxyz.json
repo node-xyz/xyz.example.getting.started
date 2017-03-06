@@ -1,0 +1,18 @@
+{
+  "nodes": [
+    {
+      "path": "helloxyz/math.ms.js",
+      "instance": 1,
+      "port": 4000,
+      "stdio": "file",
+      "params": ""
+    },
+    {
+      "path": "helloxyz/string.ms.js",
+      "instance": 1,
+      "port": 5000,
+      "stdio": "file",
+      "params": ""
+    }
+  ]
+}
