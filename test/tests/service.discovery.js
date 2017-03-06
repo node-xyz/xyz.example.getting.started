@@ -8,32 +8,34 @@ let identifiers = []
 let TESTER
 
 before(function (done) {
+  this.timeout(5000)
   test.setUpTestEnv((p) => {
     processes = p
     identifiers = Object.keys(processes)
     TESTER = test.getTester()
-    expect(identifiers).to.have.lengthOf(2)
-    done()
-  }, 'helloxyz/helloxyz.json')
+    setTimeout(() => {
+      expect(identifiers).to.have.lengthOf(7)
+      done()
+    })
+  }, 'service-discovery/service.discovery.json')
 })
 
 it('message rate', function (done) {
-  this.timeout(5000)
+  this.timeout(10 * 1000)
   setTimeout(() => {
     _send('network', processes['math.ms@127.0.0.1:4000'], (data) => {
       console.log(data)
-      expect(data.rcv).to.be.above(0.5)
+      expect(data.rcv).to.be.above(2.4)
       done()
     })
-  }, 2000)
+  }, 6000)
 })
 it('messaging', function (done) {
   // this is because it takes time for the TESTER node to identify string and math
   this.timeout(6000)
   setTimeout(() => {
-    TESTER.call({servicePath: 'mul', payload: {x: 2, y: 3}},
-    (err, body, resp) => {
-      expect(body).to.equal(6)
+    _send('inspectJSON', processes['math.ms@127.0.0.1:4000'], (data) => {
+      expect(data.global.systemConf.nodes).to.have.lengthOf(7 + 1)
       done()
     })
   }, 5000)

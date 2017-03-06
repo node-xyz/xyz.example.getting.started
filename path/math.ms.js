@@ -1,14 +1,11 @@
 let XYZ = require('xyz-core')
+
 let mathMS = new XYZ({
   selfConf: {
-    allowJoin: true,
-    name: 'MathMS',
-    host: '127.0.0.1',
-    port: 3333
+    name: 'math.ms',
+    host: '127.0.0.1'
   },
-  systemConf: {
-    nodes: []
-  }
+  systemConf: {nodes: []}
 })
 
 mathMS.register('decimal/mul', (payload, response) => {

@@ -5,3 +5,7 @@ describe('hello xyz', function () {
 describe('replicating', function () {
   require('./tests/replicating')
 })
+
+describe('service-discovery', function () {
+  require('./tests/service.discovery')
+})

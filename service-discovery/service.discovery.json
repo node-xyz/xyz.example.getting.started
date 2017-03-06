@@ -1,0 +1,51 @@
+{
+  "nodes": [
+    {
+      "path": "service-discovery/math.ms.js",
+      "instance": 1,
+      "port": 4000,
+      "stdio": "file",
+      "params": ""
+    },
+    {
+      "path": "service-discovery/string.ms.js",
+      "instance": 1,
+      "port": 5000,
+      "stdio": "file",
+      "params": ""
+    },
+    {
+      "path": "service-discovery/string.ms.js",
+      "instance": 1,
+      "port": 5001,
+      "stdio": "file"
+    },
+    {
+      "path": "service-discovery/string.ms.js",
+      "instance": 1,
+      "port": 5002,
+      "stdio": "file"
+    },
+    {
+      "path": "service-discovery/math.ms.js",
+      "instance": 1,
+      "port": 3999,
+      "stdio": "file",
+      "params": "--xyz-name math.ms.slave --xyz-seed 127.0.0.1:4000"
+    },
+    {
+      "path": "service-discovery/math.ms.js",
+      "instance": 1,
+      "port": 3998,
+      "stdio": "file",
+      "params": "--xyz-name math.ms.slave --xyz-seed 127.0.0.1:4000"
+    },
+    {
+      "path": "service-discovery/math.ms.js",
+      "instance": 1,
+      "port": 3997,
+      "stdio": "file",
+      "params": "--xyz-name math.ms.slave --xyz-seed 127.0.0.1:4000"
+    }
+  ]
+}

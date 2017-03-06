@@ -1,15 +1,15 @@
 let XYZ = require('xyz-core')
 let stringMS = new XYZ({
   selfConf: {
-    name: 'stringMS',
+    name: 'string.ms',
     host: '127.0.0.1',
-    port: 3334,
-    seed: ['127.0.0.1:3333']
+    seed: ['127.0.0.1:4000'],
+    defaultSendStrategy: require('xyz-core/src/Service/Middleware/service.send.to.all'),
+    transport: [{type: 'HTTP', port: 5000}]
   },
-  systemConf: {
-    nodes: []
-  }
+  systemConf: {nodes: []}
 })
+
 stringMS.register('up', (payload, response) => {
   response.jsonify(payload.toUpperCase())
 })
@@ -17,9 +17,14 @@ stringMS.register('down', (payload, response) => {
   response.jsonify(payload.toLowerCase())
 })
 
+let sendToAll = require('xyz-core/src/Service/Middleware/service.send.to.all')
+let firstFind = require('xyz-core/src/Service/Middleware/service.first.find')
 setInterval(() => {
-  stringMS.call({servicePath: 'mul', payload: {x: 2, y: 5}}, (err, body, res) => {
-    if (err) throw err
-    console.log(`my fellwo service reponded with ${body}`)
+  stringMS.call({servicePath: 'mul', payload: {x: 2, y: 5}, sendStrategy: sendToAll}, (err, body, res) => {
+    console.log(`response of mul => ${JSON.stringify(body)} [err ${err}]`)
   })
-}, 2000)
+
+  stringMS.call({servicePath: 'mul', payload: {x: 2, y: 5}, sendStrategy: firstFind}, (err, body, res) => {
+    console.log(`response of mul => ${JSON.stringify(body)} [err ${err}]`)
+  })
+}, 1000)
