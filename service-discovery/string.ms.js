@@ -1,10 +1,7 @@
 let XYZ = require('xyz-core')
-let sendToAll = require('xyz.service.send.to.all')
-
 let stringMS = new XYZ({
   selfConf: {
     name: 'stringMS',
-    // defaultSendStrategy: sendToAll
     host: '127.0.0.1',
     port: 3334,
     seed: ['127.0.0.1:3333']
@@ -21,11 +18,8 @@ stringMS.register('down', (payload, response) => {
 })
 
 setInterval(() => {
-  stringMS.call({servicePath: 'mul', payload: {x: 2, y: 5}, sendStrategy: sendToAll}, (err, body, res) => {
+  stringMS.call({servicePath: 'mul', payload: {x: 2, y: 5}}, (err, body, res) => {
     if (err) throw err
-    console.log('my fellwo service reponded with')
-    console.log(body)
+    console.log(`my fellwo service reponded with ${body}`)
   })
 }, 2000)
-
-console.log(stringMS)

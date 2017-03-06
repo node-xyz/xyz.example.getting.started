@@ -1,14 +1,12 @@
 let XYZ = require('xyz-core')
 let stringMS = new XYZ({
   selfConf: {
-    name: 'stringMS',
+    name: 'string.ms',
     host: '127.0.0.1',
-    port: 3334,
-    seed: ['127.0.0.1:3333']
+    seed: ['127.0.0.1:4000'],
+    transport: [{type: 'HTTP', port: 5000}]
   },
-  systemConf: {
-    nodes: []
-  }
+  systemConf: {nodes: []}
 })
 stringMS.register('up', (payload, response) => {
   response.jsonify(payload.toUpperCase())
@@ -19,7 +17,6 @@ stringMS.register('down', (payload, response) => {
 
 setInterval(() => {
   stringMS.call({servicePath: 'mul', payload: {x: 2, y: 5}}, (err, body, res) => {
-    if (err) throw err
-    console.log(`my fellwo service reponded with ${body}`)
+    console.log(`response of mul => ${body} [err ${err}]`)
   })
-}, 2000)
+}, 1000)

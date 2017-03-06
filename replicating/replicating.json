@@ -1,0 +1,36 @@
+{
+  "nodes": [
+    {
+      "path": "replicating/math.ms.js",
+      "instance": 1,
+      "port": 4000,
+      "stdio": "file",
+      "params": ""
+    },
+    {
+      "path": "replicating/string.ms.js",
+      "instance": 1,
+      "port": 5000,
+      "stdio": "file",
+      "params": ""
+    },
+    {
+      "path": "replicating/string.ms.js",
+      "instance": 1,
+      "port": 5001,
+      "stdio": "file"
+    },
+    {
+      "path": "replicating/string.ms.js",
+      "instance": 1,
+      "port": 5002,
+      "stdio": "file"
+    },
+    {
+      "path": "replicating/string.ms.js",
+      "instance": 1,
+      "port": 5003,
+      "stdio": "file"
+    }
+  ]
+}
