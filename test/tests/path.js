@@ -35,7 +35,7 @@ it('wildcards - case 2 ', function (done) {
     payload: {x: 2, y: 2 },
     sendStrategy: require('xyz-core/src/Service/Middleware/service.send.to.all')
   }, (err, body, resp) => {
-    expect(Object.keys(body)).to.have.lengthOf(4)
+    expect(Object.keys(body)).to.have.lengthOf(5)
     done()
   })
 })
