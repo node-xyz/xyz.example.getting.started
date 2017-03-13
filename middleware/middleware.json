@@ -1,0 +1,18 @@
+{
+  "nodes": [
+    {
+      "path": "middleware/math.ms.js",
+      "instance": 1,
+      "port": 4000,
+      "stdio": "console",
+      "params": "--xyz-logLevel info"
+    },
+    {
+      "path": "middleware/string.ms.js",
+      "instance": 1,
+      "port": 5000,
+      "stdio": "console",
+      "params": "--xyz-logLevel info"
+    }
+  ]
+}

@@ -1,21 +1,23 @@
 let XYZ = require('xyz-core')
+
 let mathMS = new XYZ({
   selfConf: {
-    name: 'MathMS',
-    host: '127.0.0.1',
-    port: 3333
+    name: 'math.ms',
+    host: '127.0.0.1'
   },
-  systemConf: {
-    nodes: []
-  }
+  systemConf: {nodes: []}
 })
 
-mathMS.middlewares().transport.client('CALL').register(0, require('./auth.send'))
-mathMS.middlewares().transport.server('CALL').register(0, require('./auth.receive'))
+let _dummyLogger = require('./dummy.logger')
+mathMS.middlewares().transport.server('CALL')(4000).register(0, _dummyLogger)
 
-// mathMS.middlewares().transport.server('CALL').register(0, require('./dummy.logger'))
+let _authSend = require('./auth.send')
+let _authReceive = require('./auth.receive')
+mathMS.middlewares().transport.server('CALL')(4000).register(1, _authReceive)
+mathMS.middlewares().transport.client('CALL').register(0, _authSend)
 
 mathMS.register('decimal/mul', (payload, response) => {
+  console.log('decimal/mul was called!')
   response.jsonify(payload.x * payload.y)
 })
 

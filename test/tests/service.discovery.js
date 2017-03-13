@@ -25,7 +25,7 @@ it('message rate', function (done) {
   setTimeout(() => {
     _send('network', processes['math.ms@127.0.0.1:4000'], (data) => {
       console.log(data)
-      expect(data.rcv).to.be.above(2.4)
+      expect(data.rcv).to.be.above(1)
       done()
     })
   }, 6000)

@@ -1,8 +1,9 @@
-const SECRET = 'SECRET'
+const SECRET = 'SHARED_SECRET'
 
-let authReceive = function (params, next, end) {
-  console.log(params[2])
-  let authorization = params[2].authorization
+let _authReceive = function (params, next, end) {
+  let payload = params[2]
+  let req = params[0]
+  let authorization = payload.authorization
 
   if (authorization === SECRET) {
     console.log('auth accpeted')
@@ -10,9 +11,9 @@ let authReceive = function (params, next, end) {
   } else {
     console.log('auth failed')
     // it's better to also close the request immediately
-    params[0].destroy()
+    req.destroy()
     end()
   }
 }
 
-module.exports = authReceive
+module.exports = _authReceive

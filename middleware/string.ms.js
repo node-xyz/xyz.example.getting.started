@@ -1,24 +1,16 @@
 let XYZ = require('xyz-core')
-let sendToAll = require('xyz.service.send.to.all')
+let sendToAll = require('xyz-core/src/Service/Middleware/service.send.to.all')
+let firstFind = require('xyz-core/src/Service/Middleware/service.first.find')
 
 let stringMS = new XYZ({
-  defaultSendStrategy: sendToAll,
   selfConf: {
-    name: 'stringMS',
+    name: 'string.ms',
     host: '127.0.0.1',
-    port: 3334,
-    seed: ['127.0.0.1:3333']
+    seed: ['127.0.0.1:4000'],
+    transport: [{type: 'HTTP', port: 5000}]
   },
-  systemConf: {
-    nodes: []
-  }
+  systemConf: {nodes: []}
 })
-
-stringMS.middlewares().transport.client('CALL').register(0, require('./auth.send'))
-stringMS.middlewares().transport.server('CALL').register(0, require('./auth.receive'))
-
-// stringMS.middlewares().transport.client('CALL').register(0, require('./dummy.logger'))
-
 stringMS.register('up', (payload, response) => {
   response.jsonify(payload.toUpperCase())
 })
@@ -26,11 +18,29 @@ stringMS.register('down', (payload, response) => {
   response.jsonify(payload.toLowerCase())
 })
 
+let _authSend = require('./auth.send')
+let _authReceive = require('./auth.receive')
+stringMS.middlewares().transport.server('CALL')(5000).register(1, _authReceive)
+stringMS.middlewares().transport.client('CALL').register(0, _authSend)
+
 setInterval(() => {
-  stringMS.call({servicePath: '/*/mul', payload: {x: 2, y: 5}}, (err, body, res) => {
-    if (err) throw err
-    console.log(`my fellow service responded with ${JSON.stringify(body)}`)
+  stringMS.call({
+    servicePath: '/decimal/mul',
+    payload: {x: 2, y: 5},
+    sendStrategy: firstFind
+  },
+  (err, body, res) => {
+    console.log(`/decimal/mul [firstFind] => ${body} [err ${err}]`)
   })
-}, 2000)
+
+  // stringMS.call({
+  //   servicePath: '/decimal/*',
+  //   payload: {x: 2, y: 5},
+  //   sendStrategy: sendToAll
+  // },
+  // (err, body, res) => {
+  //   console.log(`/decimal/* [sendToAll]=> ${JSON.stringify(body)} [err ${err}]`)
+  // })
+}, 1000)
 
 console.log(stringMS)
