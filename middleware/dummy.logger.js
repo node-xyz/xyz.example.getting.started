@@ -1,8 +1,6 @@
-let _dummyLogger = function (params, next, end) {
+let _dummyLogger = function (xReceiveMessage, next, end) {
   console.log('i was called! now what?')
-  let port = params[3]
-  let body = params[2]
-  console.log(`LOGGER :: http message received on port ${port} with body ${JSON.stringify(body)}`)
+  console.log(`LOGGER :: http message received on port ${xReceiveMessage.serverId.port} with body ${JSON.stringify(xReceiveMessage.message)}`)
   next()
 }
 module.exports = _dummyLogger

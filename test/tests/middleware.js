@@ -27,7 +27,7 @@ it('messaging no auth', function (done) {
     })
 })
 
-it('messaging no auth', function (done) {
+it('messaging with auth', function (done) {
   TESTER.middlewares().transport.client('CALL').register(0, require('./../../middleware/auth.send'))
   TESTER.call({servicePath: 'decimal/mul', payload: {x: 2, y: 3}},
     (err, body, resp) => {

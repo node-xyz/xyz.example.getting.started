@@ -1,8 +1,8 @@
 const SECRET = 'SHARED_SECRET'
 
-let _authReceive = function (params, next, end) {
-  let payload = params[2]
-  let req = params[0]
+let _authReceive = function (xReceiveMessage, next, end) {
+  let payload = xReceiveMessage.message
+  let req = xReceiveMessage.meta.request
   let authorization = payload.authorization
 
   if (authorization === SECRET) {

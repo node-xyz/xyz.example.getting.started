@@ -29,14 +29,14 @@ it('message rate', function (done) {
 })
 it('messaging', function (done) {
   // this is because it takes time for the TESTER node to identify string and math
-  this.timeout(6000)
+  this.timeout(20 * 1000)
   setTimeout(() => {
     TESTER.call({servicePath: 'mul', payload: {x: 2, y: 3}},
     (err, body, resp) => {
       expect(body).to.equal(6)
       done()
     })
-  }, 5000)
+  }, 6 * 1000)
 })
 
 after(function () {
