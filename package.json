@@ -11,7 +11,7 @@
   "license": "ISC",
   "dependencies": {
     "xyz-cli": "^0.3.2",
-    "xyz-core": "^0.3.2"
+    "xyz-core": "0.4.x"
   },
   "devDependencies": {
     "mocha": "latest",
