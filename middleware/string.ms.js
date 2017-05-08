@@ -1,6 +1,6 @@
 let XYZ = require('xyz-core')
-let sendToAll = require('xyz-core/src/Service/Middleware/service.send.to.all')
-let firstFind = require('xyz-core/src/Service/Middleware/service.first.find')
+let sendToAll = require('xyz-core/built/Service/Middleware/service.send.to.all')
+let firstFind = require('xyz-core/built/Service/Middleware/service.first.find')
 
 let stringMS = new XYZ({
   selfConf: {
@@ -20,7 +20,7 @@ stringMS.register('down', (payload, response) => {
 
 let _authSend = require('./auth.send')
 let _authReceive = require('./auth.receive')
-stringMS.middlewares().transport.server('CALL')(5000).register(1, _authReceive)
+stringMS.middlewares().transport.server('CALL')(5000).register(0, _authReceive)
 stringMS.middlewares().transport.client('CALL').register(0, _authSend)
 
 setInterval(() => {

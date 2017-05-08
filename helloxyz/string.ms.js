@@ -9,7 +9,7 @@ let stringMS = new XYZ({
     nodes: ['127.0.0.1:4000']
   }
 })
-stringMS.register('up', (payload, response) => {
+stringMS.register('upppp', (payload, response) => {
   response.jsonify(payload.toUpperCase())
 })
 stringMS.register('down', (payload, response) => {
@@ -20,4 +20,4 @@ setInterval(() => {
   stringMS.call({servicePath: 'mul', payload: {x: 2, y: 5}}, (err, body, res) => {
     console.log(`response of mul => ${body} [err ${err}]`)
   })
-}, 1000)
+}, 200)

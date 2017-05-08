@@ -1,6 +1,6 @@
 let XYZ = require('xyz-core')
-let sendToAll = require('xyz-core/src/Service/Middleware/service.send.to.all')
-let firstFind = require('xyz-core/src/Service/Middleware/service.first.find')
+let sendToAll = require('xyz-core/built/Service/Middleware/service.send.to.all')
+let firstFind = require('xyz-core/built/Service/Middleware/service.first.find')
 
 let stringMS = new XYZ({
   selfConf: {

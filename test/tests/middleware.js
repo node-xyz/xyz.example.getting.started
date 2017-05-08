@@ -22,6 +22,7 @@ before(function (done) {
 it('messaging no auth', function (done) {
   TESTER.call({servicePath: 'decimal/mul', payload: {x: 2, y: 3}},
     (err, body, resp) => {
+      console.log(1, err, body)
       expect(body).to.equal(null)
       done()
     })
@@ -31,6 +32,7 @@ it('messaging with auth', function (done) {
   TESTER.middlewares().transport.client('CALL').register(0, require('./../../middleware/auth.send'))
   TESTER.call({servicePath: 'decimal/mul', payload: {x: 2, y: 3}},
     (err, body, resp) => {
+      console.log(2, err, body)
       expect(body).to.equal(6)
       done()
     })

@@ -22,7 +22,7 @@ it('wildcards - case 1 ', function (done) {
   TESTER.call({
     servicePath: 'decimal/*',
     payload: {x: 2, y: 2 },
-    sendStrategy: require('xyz-core/src/Service/Middleware/service.send.to.all')
+    sendStrategy: require('xyz-core/built/Service/Middleware/service.send.to.all')
   }, (err, body, resp) => {
     expect(Object.keys(body)).to.have.lengthOf(2)
     done()
@@ -33,7 +33,7 @@ it('wildcards - case 2 ', function (done) {
   TESTER.call({
     servicePath: '*',
     payload: {x: 2, y: 2 },
-    sendStrategy: require('xyz-core/src/Service/Middleware/service.send.to.all')
+    sendStrategy: require('xyz-core/built/Service/Middleware/service.send.to.all')
   }, (err, body, resp) => {
     expect(Object.keys(body)).to.have.lengthOf(5)
     done()

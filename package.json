@@ -10,8 +10,8 @@
   "author": "kian.peymani@gmail.com",
   "license": "ISC",
   "dependencies": {
-    "xyz-cli": "^0.3.2",
-    "xyz-core": "0.4.x"
+    "xyz-cli": "^0.4.1",
+    "xyz-core": "^0.4.1"
   },
   "devDependencies": {
     "mocha": "latest",

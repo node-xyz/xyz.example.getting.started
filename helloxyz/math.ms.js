@@ -14,7 +14,6 @@ let mathMS = new XYZ({
 })
 
 // expose these function over the system
-
 mathMS.register('mul', (payload, response) => {
   response.jsonify(payload.x * payload.y)
 })

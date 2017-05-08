@@ -1,6 +1,7 @@
 # xyz.example.getting.started
 
 [![Build Status](https://travis-ci.org/node-xyz/xyz.example.getting.started.svg?branch=master)](https://travis-ci.org/node-xyz/xyz.example.getting.started)
+[![dependencies Status](https://david-dm.org/node-xyz/xyz.example.getting.started/status.svg)](https://david-dm.org/node-xyz/xyz.example.getting.started)
 
 ---
 
