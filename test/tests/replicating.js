@@ -26,7 +26,7 @@ it('message rate', function (done) {
       expect(data.rcv).to.be.above(1)
       done()
     })
-  }, 6000)
+  }, 8000)
 })
 it('messaging', function (done) {
   // this is because it takes time for the TESTER node to identify string and math
